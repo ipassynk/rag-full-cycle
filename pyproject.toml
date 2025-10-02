@@ -1,0 +1,30 @@
+[project]
+name = "rag-full-cycle"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "jpassynk",email = "jpassynk@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic (>=2.11.9,<3.0.0)",
+    "pdfplumber (>=0.11.7,<0.12.0)",
+    "pinecone (>=7.3.0,<8.0.0)",
+    "openai (>=1.0.0,<2.0.0)",
+    "tenacity (>=8.0.0,<9.0.0)",
+    "instructor (>=1.0.0,<2.0.0)",
+]
+
+[tool.poetry]
+packages = [{include = "rag_full_cycle", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project.scripts]
+pipeline = "rag_full_cycle.main:main"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"

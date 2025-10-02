@@ -1,0 +1,292 @@
+[
+  {
+    "question_data": {
+      "chunk_id": "2-2",
+      "text": "the third little pig chose to build his\nhouse from bricks.\nWord Wizard, Online Resources, Senior Inf",
+      "question": "How does choosing bricks show that the third little pig is smarter than his brothers?"
+    },
+    "similar_chunks": [
+      {
+        "id": "2-2",
+        "score": 0.680506766
+      },
+      {
+        "id": "2-1",
+        "score": 0.630459845
+      },
+      {
+        "id": "2-0",
+        "score": 0.572106421
+      },
+      {
+        "id": "1-0",
+        "score": 0.432549536
+      },
+      {
+        "id": "1-1",
+        "score": 0.300762206
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "2-1",
+      "text": "uild his house from straw, the second little pig chose to\nbuild his house from sticks and the third ",
+      "question": "What did the second little pig choose to build his house from?"
+    },
+    "similar_chunks": [
+      {
+        "id": "2-1",
+        "score": 0.778169692
+      },
+      {
+        "id": "2-0",
+        "score": 0.759628296
+      },
+      {
+        "id": "2-2",
+        "score": 0.739573479
+      },
+      {
+        "id": "1-0",
+        "score": 0.465117484
+      },
+      {
+        "id": "1-1",
+        "score": 0.345710754
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "1-2",
+      "text": "sources, Senior Infants \u00a9 2017 Gill Education",
+      "question": "Who are Senior Infants, and why is that mentioned here?"
+    },
+    "similar_chunks": [
+      {
+        "id": "1-2",
+        "score": 0.594200134
+      },
+      {
+        "id": "2-3",
+        "score": 0.543603897
+      },
+      {
+        "id": "2-2",
+        "score": 0.233124733
+      },
+      {
+        "id": "1-1",
+        "score": 0.19354248
+      },
+      {
+        "id": "1-0",
+        "score": 0.1680298
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "1-0",
+      "text": "The Three Little Pigs\nOnce upon a time, three little pigs left their mother and their home in\norder ",
+      "question": "How might the story continue after the pigs leave their home?"
+    },
+    "similar_chunks": [
+      {
+        "id": "1-0",
+        "score": 0.565935194
+      },
+      {
+        "id": "2-0",
+        "score": 0.41328907
+      },
+      {
+        "id": "2-1",
+        "score": 0.404876739
+      },
+      {
+        "id": "2-2",
+        "score": 0.341693878
+      },
+      {
+        "id": "1-1",
+        "score": 0.315572739
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "2-0",
+      "text": "The three little pigs gathered materials for their houses. The first little\npig chose to build his h",
+      "question": "What do you think the first little pig chose to build his house with?"
+    },
+    "similar_chunks": [
+      {
+        "id": "2-0",
+        "score": 0.768968642
+      },
+      {
+        "id": "2-1",
+        "score": 0.72614485
+      },
+      {
+        "id": "2-2",
+        "score": 0.670225203
+      },
+      {
+        "id": "1-0",
+        "score": 0.452804625
+      },
+      {
+        "id": "1-1",
+        "score": 0.339292556
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "2-2",
+      "text": "the third little pig chose to build his\nhouse from bricks.\nWord Wizard, Online Resources, Senior Inf",
+      "question": "What did the third little pig choose to build his house from?"
+    },
+    "similar_chunks": [
+      {
+        "id": "2-1",
+        "score": 0.811069548
+      },
+      {
+        "id": "2-2",
+        "score": 0.78614521
+      },
+      {
+        "id": "2-0",
+        "score": 0.785416603
+      },
+      {
+        "id": "1-0",
+        "score": 0.518931448
+      },
+      {
+        "id": "1-1",
+        "score": 0.343662262
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "2-3",
+      "text": "Senior Infants \u00a9 2017 Gill Education",
+      "question": "What year is the copyright for Senior Infants?"
+    },
+    "similar_chunks": [
+      {
+        "id": "1-2",
+        "score": 0.557106078
+      },
+      {
+        "id": "2-3",
+        "score": 0.473953277
+      },
+      {
+        "id": "2-2",
+        "score": 0.203866974
+      },
+      {
+        "id": "1-1",
+        "score": 0.128971115
+      },
+      {
+        "id": "1-0",
+        "score": 0.101186767
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "1-1",
+      "text": " in\norder to seek their own fortunes and to build their own houses.\nWord Wizard, Online Resources, S",
+      "question": "How do you think building your own house would make someone feel?"
+    },
+    "similar_chunks": [
+      {
+        "id": "1-1",
+        "score": 0.393112183
+      },
+      {
+        "id": "2-1",
+        "score": 0.373653442
+      },
+      {
+        "id": "2-0",
+        "score": 0.36734581
+      },
+      {
+        "id": "2-2",
+        "score": 0.340568542
+      },
+      {
+        "id": "1-0",
+        "score": 0.131187454
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "1-2",
+      "text": "sources, Senior Infants \u00a9 2017 Gill Education",
+      "question": "Why might a book for Senior Infants include sources from Gill Education in 2017?"
+    },
+    "similar_chunks": [
+      {
+        "id": "1-2",
+        "score": 0.761638641
+      },
+      {
+        "id": "2-3",
+        "score": 0.667337418
+      },
+      {
+        "id": "2-2",
+        "score": 0.253553391
+      },
+      {
+        "id": "1-1",
+        "score": 0.1906147
+      },
+      {
+        "id": "1-0",
+        "score": 0.147218719
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "2-0",
+      "text": "The three little pigs gathered materials for their houses. The first little\npig chose to build his h",
+      "question": "What did the three little pigs gather for their houses?"
+    },
+    "similar_chunks": [
+      {
+        "id": "2-0",
+        "score": 0.786865234
+      },
+      {
+        "id": "2-1",
+        "score": 0.709413588
+      },
+      {
+        "id": "1-0",
+        "score": 0.625957549
+      },
+      {
+        "id": "2-2",
+        "score": 0.618944168
+      },
+      {
+        "id": "1-1",
+        "score": 0.400007248
+      }
+    ]
+  }
+]
