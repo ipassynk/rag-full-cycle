@@ -17,6 +17,8 @@ CHUNKS_OUTPUT = f"{OUTPUT_DIR}/chunks.json"
 # Chunking Configuration
 #CHUNK_SIZES: List[int] = [100, 256, 512]
 #CHUNK_OVERLAPS: List[int] = [10, 64, 64]
+
+### This is in words
 CHUNK_SIZES: List[int] = [100]
 CHUNK_OVERLAPS: List[int] = [10]
 

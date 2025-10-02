@@ -7,17 +7,22 @@ class ChunkGenerator:
         pass
     
     def create_chunks(self, extract_data, size, overlap):
-        """Create chunks from extracted text data"""
+        """Create chunks from extracted text data, respecting word boundaries"""
         chunks = []
         
         for data in extract_data:
             text = data["text"]
-            window_chunks = [text[i:i+size] for i in range(0, len(text), size-overlap)]
-            for chunk_num, chunk in enumerate(window_chunks, 0):
-                chunks.append({
-                    "text": chunk, 
-                    "id": f"{data['page']}-{chunk_num}"
-                })
+            words = text.split()
+            step_size = size - overlap
+            for i in range(0, len(words), step_size):
+                chunk_words = words[i:i + size]
+                chunk_text = " ".join(chunk_words)
+                
+                if chunk_text.strip():
+                    chunks.append({
+                        "text": chunk_text, 
+                        "id": f"{data['page']}-{i//step_size}"
+                    })
         
         return chunks
     

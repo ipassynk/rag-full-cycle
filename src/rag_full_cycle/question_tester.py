@@ -52,9 +52,7 @@ class RandomQuestionTester:
     
     def test_question_retrieval(self, question_data):
         """Test question retrieval by finding similar chunks"""
-        print(f"\nQuestion: {question_data['question']}")
-        print(f"From chunk: {question_data['chunk_id']}")
-        print(f"Text: {question_data['text'][:100]}...")
+        print(f"Test question: {question_data['question']}")
         
         try:
             embedding_response = self.embedding_generator.create_embedding_with_retry(question_data['question'])
