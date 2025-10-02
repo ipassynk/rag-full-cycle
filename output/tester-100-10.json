@@ -1,204 +1,59 @@
 [
   {
     "question_data": {
-      "chunk_id": "2-2",
-      "text": "the third little pig chose to build his\nhouse from bricks.\nWord Wizard, Online Resources, Senior Inf",
-      "question": "How does choosing bricks show that the third little pig is smarter than his brothers?"
-    },
-    "similar_chunks": [
-      {
-        "id": "2-2",
-        "score": 0.680506766
-      },
-      {
-        "id": "2-1",
-        "score": 0.630459845
-      },
-      {
-        "id": "2-0",
-        "score": 0.572106421
-      },
-      {
-        "id": "1-0",
-        "score": 0.432549536
-      },
-      {
-        "id": "1-1",
-        "score": 0.300762206
-      }
-    ]
-  },
-  {
-    "question_data": {
-      "chunk_id": "2-1",
-      "text": "uild his house from straw, the second little pig chose to\nbuild his house from sticks and the third ",
-      "question": "What did the second little pig choose to build his house from?"
-    },
-    "similar_chunks": [
-      {
-        "id": "2-1",
-        "score": 0.778169692
-      },
-      {
-        "id": "2-0",
-        "score": 0.759628296
-      },
-      {
-        "id": "2-2",
-        "score": 0.739573479
-      },
-      {
-        "id": "1-0",
-        "score": 0.465117484
-      },
-      {
-        "id": "1-1",
-        "score": 0.345710754
-      }
-    ]
-  },
-  {
-    "question_data": {
-      "chunk_id": "1-2",
-      "text": "sources, Senior Infants \u00a9 2017 Gill Education",
-      "question": "Who are Senior Infants, and why is that mentioned here?"
-    },
-    "similar_chunks": [
-      {
-        "id": "1-2",
-        "score": 0.594200134
-      },
-      {
-        "id": "2-3",
-        "score": 0.543603897
-      },
-      {
-        "id": "2-2",
-        "score": 0.233124733
-      },
-      {
-        "id": "1-1",
-        "score": 0.19354248
-      },
-      {
-        "id": "1-0",
-        "score": 0.1680298
-      }
-    ]
-  },
-  {
-    "question_data": {
       "chunk_id": "1-0",
       "text": "The Three Little Pigs\nOnce upon a time, three little pigs left their mother and their home in\norder ",
-      "question": "How might the story continue after the pigs leave their home?"
+      "question": "What do the three little pigs do at the beginning of the story?"
     },
     "similar_chunks": [
       {
         "id": "1-0",
-        "score": 0.565935194
+        "score": 0.691145897
       },
       {
         "id": "2-0",
-        "score": 0.41328907
+        "score": 0.62146759
+      },
+      {
+        "id": "6-0",
+        "score": 0.618985176
+      },
+      {
+        "id": "5-0",
+        "score": 0.601677954
       },
       {
         "id": "2-1",
-        "score": 0.404876739
-      },
-      {
-        "id": "2-2",
-        "score": 0.341693878
-      },
-      {
-        "id": "1-1",
-        "score": 0.315572739
+        "score": 0.600419104
       }
     ]
   },
   {
     "question_data": {
-      "chunk_id": "2-0",
-      "text": "The three little pigs gathered materials for their houses. The first little\npig chose to build his h",
-      "question": "What do you think the first little pig chose to build his house with?"
+      "chunk_id": "4-1",
+      "text": " pigs let me come in!\u2019, he called, \u2018or I\u2019ll huff and I\u2019ll puff\nand I\u2019ll blow your house down!\u2019\n\u2018Not ",
+      "question": "What does the wolf say he will do if the pigs don't let him come in?"
     },
     "similar_chunks": [
       {
-        "id": "2-0",
-        "score": 0.768968642
+        "id": "5-0",
+        "score": 0.624765456
       },
       {
-        "id": "2-1",
-        "score": 0.72614485
+        "id": "3-1",
+        "score": 0.597781181
       },
       {
-        "id": "2-2",
-        "score": 0.670225203
+        "id": "4-0",
+        "score": 0.596719742
       },
       {
-        "id": "1-0",
-        "score": 0.452804625
+        "id": "4-2",
+        "score": 0.573447287
       },
       {
-        "id": "1-1",
-        "score": 0.339292556
-      }
-    ]
-  },
-  {
-    "question_data": {
-      "chunk_id": "2-2",
-      "text": "the third little pig chose to build his\nhouse from bricks.\nWord Wizard, Online Resources, Senior Inf",
-      "question": "What did the third little pig choose to build his house from?"
-    },
-    "similar_chunks": [
-      {
-        "id": "2-1",
-        "score": 0.811069548
-      },
-      {
-        "id": "2-2",
-        "score": 0.78614521
-      },
-      {
-        "id": "2-0",
-        "score": 0.785416603
-      },
-      {
-        "id": "1-0",
-        "score": 0.518931448
-      },
-      {
-        "id": "1-1",
-        "score": 0.343662262
-      }
-    ]
-  },
-  {
-    "question_data": {
-      "chunk_id": "2-3",
-      "text": "Senior Infants \u00a9 2017 Gill Education",
-      "question": "What year is the copyright for Senior Infants?"
-    },
-    "similar_chunks": [
-      {
-        "id": "1-2",
-        "score": 0.557106078
-      },
-      {
-        "id": "2-3",
-        "score": 0.473953277
-      },
-      {
-        "id": "2-2",
-        "score": 0.203866974
-      },
-      {
-        "id": "1-1",
-        "score": 0.128971115
-      },
-      {
-        "id": "1-0",
-        "score": 0.101186767
+        "id": "3-2",
+        "score": 0.568579674
       }
     ]
   },
@@ -206,57 +61,86 @@
     "question_data": {
       "chunk_id": "1-1",
       "text": " in\norder to seek their own fortunes and to build their own houses.\nWord Wizard, Online Resources, S",
-      "question": "How do you think building your own house would make someone feel?"
+      "question": "What does it mean to seek your own fortune?"
     },
     "similar_chunks": [
       {
         "id": "1-1",
-        "score": 0.393112183
+        "score": 0.480234146
       },
       {
-        "id": "2-1",
-        "score": 0.373653442
+        "id": "6-3",
+        "score": 0.131325722
       },
       {
-        "id": "2-0",
-        "score": 0.36734581
+        "id": "5-4",
+        "score": 0.110774979
       },
       {
-        "id": "2-2",
-        "score": 0.340568542
+        "id": "6-4",
+        "score": 0.105953217
       },
       {
-        "id": "1-0",
-        "score": 0.131187454
+        "id": "5-5",
+        "score": 0.102879509
       }
     ]
   },
   {
     "question_data": {
-      "chunk_id": "1-2",
-      "text": "sources, Senior Infants \u00a9 2017 Gill Education",
-      "question": "Why might a book for Senior Infants include sources from Gill Education in 2017?"
+      "chunk_id": "2-3",
+      "text": "Senior Infants \u00a9 2017 Gill Education",
+      "question": "Why might the year 2017 be important for this book?"
     },
     "similar_chunks": [
       {
-        "id": "1-2",
-        "score": 0.761638641
-      },
-      {
         "id": "2-3",
-        "score": 0.667337418
+        "score": 0.181661606
       },
       {
-        "id": "2-2",
-        "score": 0.253553391
+        "id": "5-6",
+        "score": 0.177839294
+      },
+      {
+        "id": "1-2",
+        "score": 0.173875809
       },
       {
         "id": "1-1",
-        "score": 0.1906147
+        "score": 0.16223526
       },
       {
-        "id": "1-0",
-        "score": 0.147218719
+        "id": "6-5",
+        "score": 0.149379745
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "6-4",
+      "text": "r away!\nThe three little pigs never had any trouble from him again and they\nall lived happily ever a",
+      "question": "What happened to the wolf at the end of the story?"
+    },
+    "similar_chunks": [
+      {
+        "id": "4-0",
+        "score": 0.528746545
+      },
+      {
+        "id": "5-0",
+        "score": 0.490161896
+      },
+      {
+        "id": "5-3",
+        "score": 0.46054548
+      },
+      {
+        "id": "4-2",
+        "score": 0.442006111
+      },
+      {
+        "id": "3-2",
+        "score": 0.441360414
       }
     ]
   },
@@ -264,28 +148,144 @@
     "question_data": {
       "chunk_id": "2-0",
       "text": "The three little pigs gathered materials for their houses. The first little\npig chose to build his h",
-      "question": "What did the three little pigs gather for their houses?"
+      "question": "Why do you think the first little pig chose to build his house?"
     },
     "similar_chunks": [
       {
         "id": "2-0",
-        "score": 0.786865234
+        "score": 0.727311194
       },
       {
         "id": "2-1",
-        "score": 0.709413588
-      },
-      {
-        "id": "1-0",
-        "score": 0.625957549
+        "score": 0.672219336
       },
       {
         "id": "2-2",
-        "score": 0.618944168
+        "score": 0.626934111
       },
       {
-        "id": "1-1",
-        "score": 0.400007248
+        "id": "3-0",
+        "score": 0.553786337
+      },
+      {
+        "id": "3-1",
+        "score": 0.54688555
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "3-4",
+      "text": "use down. The\nlittle pig escaped and ran to his brother\u2019s house of sticks.\nWord Wizard, Online Resou",
+      "question": "How might the house of sticks help the little pig feel safer than being outside?"
+    },
+    "similar_chunks": [
+      {
+        "id": "3-4",
+        "score": 0.532260954
+      },
+      {
+        "id": "2-1",
+        "score": 0.523903906
+      },
+      {
+        "id": "3-2",
+        "score": 0.509462357
+      },
+      {
+        "id": "2-0",
+        "score": 0.502450943
+      },
+      {
+        "id": "3-1",
+        "score": 0.501844406
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "5-1",
+      "text": "le pigs let me come in! \u2018Or I\u2019ll huff and I\u2019ll puff and I\u2019ll blow\nyour house down!\u2019.\n\u2018Not by the hai",
+      "question": "What does the wolf say he will do to the pigs' house if they don't let him in?"
+    },
+    "similar_chunks": [
+      {
+        "id": "5-0",
+        "score": 0.653225958
+      },
+      {
+        "id": "3-1",
+        "score": 0.621227264
+      },
+      {
+        "id": "5-1",
+        "score": 0.583536148
+      },
+      {
+        "id": "4-0",
+        "score": 0.580982208
+      },
+      {
+        "id": "3-2",
+        "score": 0.574949265
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "3-2",
+      "text": "use down!\u2019 called the wolf. The\nlittle pig felt safe in his house so he shouted back, \u2018Not by the ha",
+      "question": "Why do you think the little pig felt safe enough to shout back?"
+    },
+    "similar_chunks": [
+      {
+        "id": "3-2",
+        "score": 0.585270882
+      },
+      {
+        "id": "5-0",
+        "score": 0.54106909
+      },
+      {
+        "id": "4-0",
+        "score": 0.532748222
+      },
+      {
+        "id": "5-4",
+        "score": 0.529741228
+      },
+      {
+        "id": "3-1",
+        "score": 0.524892807
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "4-4",
+      "text": "her\u2019s house of bricks.\nWord Wizard, Online Resources, Senior Infants \u00a9 2017 Gill Education",
+      "question": "What is the house in the story made of?"
+    },
+    "similar_chunks": [
+      {
+        "id": "2-1",
+        "score": 0.460282356
+      },
+      {
+        "id": "2-0",
+        "score": 0.456305504
+      },
+      {
+        "id": "2-2",
+        "score": 0.412054062
+      },
+      {
+        "id": "4-4",
+        "score": 0.409545898
+      },
+      {
+        "id": "4-3",
+        "score": 0.392172843
       }
     ]
   }
