@@ -1,0 +1,292 @@
+[
+  {
+    "question_data": {
+      "chunk_id": "6-1",
+      "text": "lived happily ever after. Word Wizard, Online Resources, Senior Infants \u00a9 2017 Gill Education",
+      "question": "What does it mean when a story says characters lived happily ever after?"
+    },
+    "similar_chunks": [
+      {
+        "id": "6-1",
+        "score": 0.29126212
+      },
+      {
+        "id": "1-0",
+        "score": 0.269585639
+      },
+      {
+        "id": "6-0",
+        "score": 0.188789338
+      },
+      {
+        "id": "5-0",
+        "score": 0.120970726
+      },
+      {
+        "id": "2-0",
+        "score": 0.107323661
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "1-0",
+      "text": "The Three Little Pigs Once upon a time, three little pigs left their mother and their home in order to seek their own fortunes and to build their own houses. Word Wizard, Online Resources, Senior Infants \u00a9 2017 Gill Education",
+      "question": "How do you think leaving home helped the pigs learn to be independent?"
+    },
+    "similar_chunks": [
+      {
+        "id": "1-0",
+        "score": 0.599158406
+      },
+      {
+        "id": "2-0",
+        "score": 0.536153913
+      },
+      {
+        "id": "6-0",
+        "score": 0.452495575
+      },
+      {
+        "id": "4-0",
+        "score": 0.430417717
+      },
+      {
+        "id": "3-0",
+        "score": 0.428818703
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "5-0",
+      "text": "The wolf followed them and once he reached the house he began to shout, \u2018Little pigs, little pigs let me come in! \u2018Or I\u2019ll huff and I\u2019ll puff and I\u2019ll blow your house down!\u2019. \u2018Not by the hair on our chinny chin chins!\u2019 the three little pigs shouted back. The wolf huffed and he puffed and he huffed and he puffed but he could not blow the house down! The wolf was really hungry and angry that he hadn\u2019t gobbled up any little pigs yet. He decided to climb down the chimney instead of blowing down the house! Word Wizard,",
+      "question": "What did the wolf say he would do if the little pigs didn't let him come in?"
+    },
+    "similar_chunks": [
+      {
+        "id": "5-0",
+        "score": 0.672702968
+      },
+      {
+        "id": "6-0",
+        "score": 0.656381726
+      },
+      {
+        "id": "3-0",
+        "score": 0.630745053
+      },
+      {
+        "id": "4-0",
+        "score": 0.623772
+      },
+      {
+        "id": "1-0",
+        "score": 0.502097368
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "1-0",
+      "text": "The Three Little Pigs Once upon a time, three little pigs left their mother and their home in order to seek their own fortunes and to build their own houses. Word Wizard, Online Resources, Senior Infants \u00a9 2017 Gill Education",
+      "question": "What kind of houses do you think each pig will build?"
+    },
+    "similar_chunks": [
+      {
+        "id": "2-0",
+        "score": 0.608232081
+      },
+      {
+        "id": "1-0",
+        "score": 0.51671654
+      },
+      {
+        "id": "4-0",
+        "score": 0.438786149
+      },
+      {
+        "id": "5-0",
+        "score": 0.430513382
+      },
+      {
+        "id": "3-0",
+        "score": 0.421852052
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "5-0",
+      "text": "The wolf followed them and once he reached the house he began to shout, \u2018Little pigs, little pigs let me come in! \u2018Or I\u2019ll huff and I\u2019ll puff and I\u2019ll blow your house down!\u2019. \u2018Not by the hair on our chinny chin chins!\u2019 the three little pigs shouted back. The wolf huffed and he puffed and he huffed and he puffed but he could not blow the house down! The wolf was really hungry and angry that he hadn\u2019t gobbled up any little pigs yet. He decided to climb down the chimney instead of blowing down the house! Word Wizard,",
+      "question": "Why couldn't the wolf blow down the house even though he huffed and puffed?"
+    },
+    "similar_chunks": [
+      {
+        "id": "5-0",
+        "score": 0.646809757
+      },
+      {
+        "id": "4-0",
+        "score": 0.561712623
+      },
+      {
+        "id": "3-0",
+        "score": 0.558607221
+      },
+      {
+        "id": "6-0",
+        "score": 0.496883482
+      },
+      {
+        "id": "2-0",
+        "score": 0.279628873
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "1-0",
+      "text": "The Three Little Pigs Once upon a time, three little pigs left their mother and their home in order to seek their own fortunes and to build their own houses. Word Wizard, Online Resources, Senior Infants \u00a9 2017 Gill Education",
+      "question": "Why did the three little pigs leave their mother and their home?"
+    },
+    "similar_chunks": [
+      {
+        "id": "1-0",
+        "score": 0.708465755
+      },
+      {
+        "id": "2-0",
+        "score": 0.640178382
+      },
+      {
+        "id": "6-0",
+        "score": 0.624762535
+      },
+      {
+        "id": "5-0",
+        "score": 0.557770789
+      },
+      {
+        "id": "3-0",
+        "score": 0.550251
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "5-1",
+      "text": "the chimney instead of blowing down the house! Word Wizard, Online Resources, Senior Infants \u00a9 2017 Gill Education",
+      "question": "How do you think the chimney helped protect the house from the strong wind?"
+    },
+    "similar_chunks": [
+      {
+        "id": "5-1",
+        "score": 0.369681388
+      },
+      {
+        "id": "5-0",
+        "score": 0.366888076
+      },
+      {
+        "id": "6-0",
+        "score": 0.335362434
+      },
+      {
+        "id": "3-0",
+        "score": 0.264019966
+      },
+      {
+        "id": "4-0",
+        "score": 0.250290036
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "3-1",
+      "text": "Senior Infants \u00a9 2017 Gill Education",
+      "question": "How do you think this text might be used in a classroom?"
+    },
+    "similar_chunks": [
+      {
+        "id": "5-1",
+        "score": 0.349827796
+      },
+      {
+        "id": "6-1",
+        "score": 0.343051
+      },
+      {
+        "id": "3-0",
+        "score": 0.270970374
+      },
+      {
+        "id": "1-0",
+        "score": 0.263508886
+      },
+      {
+        "id": "4-0",
+        "score": 0.226099119
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "2-0",
+      "text": "The three little pigs gathered materials for their houses. The first little pig chose to build his house from straw, the second little pig chose to build his house from sticks and the third little pig chose to build his house from bricks. Word Wizard, Online Resources, Senior Infants \u00a9 2017 Gill Education",
+      "question": "If you were building a house to keep safe, which material would you choose and why?"
+    },
+    "similar_chunks": [
+      {
+        "id": "2-0",
+        "score": 0.251667112
+      },
+      {
+        "id": "5-1",
+        "score": 0.0794372708
+      },
+      {
+        "id": "1-0",
+        "score": 0.0664749369
+      },
+      {
+        "id": "3-0",
+        "score": 0.0580988
+      },
+      {
+        "id": "4-0",
+        "score": 0.047903087
+      }
+    ]
+  },
+  {
+    "question_data": {
+      "chunk_id": "6-0",
+      "text": "The three little pigs saw that the wolf was climbing up on to the roof, they figured out that he would come down the chimney, so they lit a roaring fire and put a pot of water on top of it. SPLASH! The wolf came down the chimney but he fell straight into the pot of boiling water! \u2018YEOW!\u2019 he roared as he leaped up and ran straight out of the house and far, far away! The three little pigs never had any trouble from him again and they all lived happily ever after. Word Wizard, Online Resources, Senior Infants",
+      "question": "Why do you think the pigs chose to use boiling water instead of something else to scare the wolf away?"
+    },
+    "similar_chunks": [
+      {
+        "id": "6-0",
+        "score": 0.575753272
+      },
+      {
+        "id": "5-0",
+        "score": 0.479408354
+      },
+      {
+        "id": "4-0",
+        "score": 0.422622919
+      },
+      {
+        "id": "3-0",
+        "score": 0.420271933
+      },
+      {
+        "id": "2-0",
+        "score": 0.400418907
+      }
+    ]
+  }
+]
