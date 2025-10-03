@@ -20,7 +20,7 @@ class Vectors:
         logfire.info("Generating embeddings for {len} chunks...", len=len(chunks))
         logfire.info("Using batch size: {BATCH_SIZE}, delay: {DELAY_BETWEEN_REQUESTS}s", BATCH_SIZE=BATCH_SIZE, DELAY_BETWEEN_REQUESTS=DELAY_BETWEEN_REQUESTS)
         
-        embedding_generator = Embeddings(size=self.size, overlap=self.overlap, embedding_model=EMBEDDING_MODEL_3_SMALL)
+        embedding_generator = Embeddings(self.embedding_model)
         vectors_to_upsert = []
         
         # Process chunks in batches to improve performance
@@ -36,8 +36,7 @@ class Vectors:
                     logfire.info("Processing chunk {chunk_index}: {chunk_id}", chunk_index=chunk_index,  chunk_id=chunk['id'])
                     
                     # Create embedding
-                    response = embedding_generator.create_embedding_with_retry(chunk["text"])
-                    embedding = response.data[0].embedding
+                    embedding = embedding_generator.create_embedding_ollama(chunk["text"])
                     vectors_to_upsert.append({
                         "id": chunk["id"], 
                         "values": embedding
@@ -46,7 +45,7 @@ class Vectors:
                     time.sleep(DELAY_BETWEEN_REQUESTS)
                     
                 except Exception as e:
-                    logfire.error("Error processing chunk {chunk['id']}: {e}", chunk_id=chunk['id'], e=e)
+                    logfire.error("Error processing chunk {chunk_id}: {e}", chunk_id=chunk['id'], e=e)
                     continue
             
             if batch_end < len(chunks):

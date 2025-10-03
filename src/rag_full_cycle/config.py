@@ -9,7 +9,7 @@ PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
 LOGFIRE_API_KEY = os.environ.get("LOGFIRE_API_KEY")
 
 # File 
-PDF_FILE_PATH = "fy10syb.pdf"
+#PDF_FILE_PATH = "fy10syb.pdf"
 PDF_FILE_PATH = "The-Three-Little-Pigs-original.pdf"
 
 OUTPUT_DIR = "output"
@@ -25,9 +25,8 @@ CHUNK_SIZES: List[int] = [100]
 CHUNK_OVERLAPS: List[int] = [10]
 
 # OpenAI Configuration
-OPENAI_MODEL = "x-ai/grok-4-fast:free"
+OPEN_ROUTER_MODEL = "deepseek/deepseek-chat-v3.1:free"
 EMBEDDING_MODEL_3_SMALL = "text-embedding-3-small"
-EMBEDDING_MODEL_3_LARGE = "text-embedding-3-large"
 
 # Vector Search Configuration
 TOP_K_RESULTS = 10

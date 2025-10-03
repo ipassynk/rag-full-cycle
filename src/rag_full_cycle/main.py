@@ -66,11 +66,8 @@ def runPipelineForConfig(extract, size, overlap, embedding_model):
             evaluator.evaluate_and_print_results(k=2)
 
 def main():
-    print("Starting RAG Pipeline...")
-    print("=" * 50)
-
     logfire.configure(token=LOGFIRE_API_KEY)
-    logfire.info('Hello, {place}!', place='rag-full-cycle')
+    logfire.info('Starting RAG Pipeline...!')
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -85,14 +82,13 @@ def main():
         else:
             with open(EXTRACT_OUTPUT, 'r') as f:
                 extract = json.load(f)
-            print(f"Loaded {len(extract)} pages from existing extract file")
+            logfire.info("Loaded {len} pages from existing extract file", len=len(extract))
 
     for size in CHUNK_SIZES:
         for overlap in CHUNK_OVERLAPS:
             runPipelineForConfig(extract, size, overlap, EMBEDDING_MODEL_3_SMALL)
 
-    print("\nRAG Pipeline completed successfully!")
-    print("=" * 50)
+    logfire.info('RAG Pipeline completed successfully!')
 
 if __name__ == "__main__":
     main()

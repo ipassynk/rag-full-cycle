@@ -24,7 +24,7 @@ class Questions:
             prompt = QUESTION_GENERATION_PROMPT.format(chunk=chunk_text, grade_level=GRADE_LEVEL)
             
             response = self.client.chat.completions.create(
-                model=OPENAI_MODEL,
+                model=OPEN_ROUTER_MODEL,
                 messages=[{"role": "user", "content": prompt}],
                 response_model=QuestionsResponse,
             )
@@ -32,8 +32,7 @@ class Questions:
             return response
         except Exception as e:
             logfire.error("Error generating questions for chunk: {e}", e=e)
-            # Return empty questions response
-            return QuestionsResponse(questions=[])
+            raise e
     
     def process_chunks(self, chunks):
         """Process chunks and generate questions"""
@@ -63,7 +62,7 @@ class Questions:
             
         except Exception as e:
             logfire.error("Error generating questions: {e}", e=e)
-            return []
+            raise e
     
     def save_questions(self, questions_data, output_path):
         """Save questions data to file"""

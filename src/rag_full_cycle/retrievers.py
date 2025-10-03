@@ -10,11 +10,11 @@ from .vectors import Vectors
 class Retrievers:
     """Handles random question selection and testing for RAG pipeline"""
     
-    def __init__(self, size, overlap, embedding_model=EMBEDDING_MODEL_3_SMALL):
+    def __init__(self, size, overlap, embedding_model):
         self.size = size
         self.overlap = overlap
         self.embedding_model = embedding_model
-        self.embedding_generator = Embeddings(size, overlap, embedding_model)
+        self.embedding_generator = Embeddings(self.embedding_model)
         self.vector_generator = Vectors(size, overlap, embedding_model)
     
     def load_questions_from_file(self, questions_file):
@@ -52,10 +52,8 @@ class Retrievers:
         logfire.info("Test question: {question_data}", question_data=question_data)
         
         try:
-            embedding_response = self.embedding_generator.create_embedding_with_retry(question_data['question'])
-            question_embedding = embedding_response.data[0].embedding
-            
-            similar_chunks = self.vector_generator.find_similar_chunks(question_embedding)
+            embedding = self.embedding_generator.create_embedding_ollama(question_data['question'])
+            similar_chunks = self.vector_generator.find_similar_chunks(embedding)
             return similar_chunks
             
         except Exception as e:
