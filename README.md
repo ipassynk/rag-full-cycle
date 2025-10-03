@@ -7,8 +7,8 @@ A production-ready Retrieval-Augmented Generation (RAG) system built with modern
 ## Technologies & Stack
 
 - **Vector Database**: Pinecone for scalable similarity search
-- **Embeddings**: OpenAI's text-embedding-3-small model
-- **LLM**: OpenAI GPT-4 via OpenRouter for question generation
+- **Embeddings**: OpenAI's text-embedding-3-small model and free OLLAMA local 
+- **LLM**: Free Model via OpenRouter for question generation
 - **PDF Processing**: pdfplumber for document extraction
 - **Structured Output**: Instructor for type-safe LLM responses
 - **Retry Logic**: Tenacity for robust API handling
