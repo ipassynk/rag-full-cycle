@@ -5,6 +5,8 @@ from typing import List
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
+PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
+LOGFIRE_API_KEY = os.environ.get("LOGFIRE_API_KEY")
 
 # File 
 PDF_FILE_PATH = "fy10syb.pdf"

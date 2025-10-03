@@ -1,9 +1,8 @@
-import json
 from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 from .config import *
 
-class EmbeddingGenerator:
+class Embeddings:
     def __init__(self, size, overlap, embedding_model):
         self.client = OpenAI(api_key=OPENAI_API_KEY)
         self.embedding_model = embedding_model

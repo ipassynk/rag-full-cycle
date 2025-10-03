@@ -1,11 +1,12 @@
 import json
 import time
 from openai import OpenAI
+import logfire
 from pinecone import Pinecone, ServerlessSpec
 from .config import *
-from .embedding_generator import EmbeddingGenerator
+from .embeddings import Embeddings
 
-class VectorGenerator:
+class Vectors:
     def __init__(self, size, overlap, embedding_model):
         self.client = OpenAI(api_key=OPENAI_API_KEY)
         self.pc = Pinecone(api_key=PINECONE_API_KEY)
@@ -16,10 +17,10 @@ class VectorGenerator:
     
     def generate_embeddings_for_chunks(self, chunks):
         """Generate embeddings for a list of chunks"""
-        print(f"\nGenerating embeddings for {len(chunks)} chunks...")
-        print(f"Using batch size: {BATCH_SIZE}, delay: {DELAY_BETWEEN_REQUESTS}s")
+        logfire.info("Generating embeddings for {len} chunks...", len=len(chunks))
+        logfire.info("Using batch size: {BATCH_SIZE}, delay: {DELAY_BETWEEN_REQUESTS}s", BATCH_SIZE=BATCH_SIZE, DELAY_BETWEEN_REQUESTS=DELAY_BETWEEN_REQUESTS)
         
-        embedding_generator = EmbeddingGenerator(size=self.size, overlap=self.overlap, embedding_model=EMBEDDING_MODEL_3_SMALL)
+        embedding_generator = Embeddings(size=self.size, overlap=self.overlap, embedding_model=EMBEDDING_MODEL_3_SMALL)
         vectors_to_upsert = []
         
         # Process chunks in batches to improve performance
@@ -27,12 +28,12 @@ class VectorGenerator:
             batch_end = min(batch_start + BATCH_SIZE, len(chunks))
             batch = chunks[batch_start:batch_end]
             
-            print(f"Processing batch {batch_start//BATCH_SIZE + 1}: chunks {batch_start+1}-{batch_end}")
+            logfire.info("Processing batch {batch_start}: chunks {batch_end}-{BATCH_SIZE}", batch_start=batch_start, batch_end=batch_end, BATCH_SIZE=BATCH_SIZE)
             
             for i, chunk in enumerate(batch):
                 try:
                     chunk_index = batch_start + i
-                    print(f"  Processing chunk {chunk_index+1}/{len(chunks)}: {chunk['id']}")
+                    logfire.info("Processing chunk {chunk_index}: {chunk_id}", chunk_index=chunk_index,  chunk_id=chunk['id'])
                     
                     # Create embedding
                     response = embedding_generator.create_embedding_with_retry(chunk["text"])
@@ -45,25 +46,25 @@ class VectorGenerator:
                     time.sleep(DELAY_BETWEEN_REQUESTS)
                     
                 except Exception as e:
-                    print(f"Error processing chunk {chunk['id']}: {e}")
+                    logfire.error("Error processing chunk {chunk['id']}: {e}", chunk_id=chunk['id'], e=e)
                     continue
             
             if batch_end < len(chunks):
-                print(f"  Waiting {DELAY_BETWEEN_BATCHES}s before next batch...")
+                logfire.info("Waiting {DELAY_BETWEEN_BATCHES}s before next batch...", DELAY_BETWEEN_BATCHES=DELAY_BETWEEN_BATCHES)
                 time.sleep(DELAY_BETWEEN_BATCHES)
         
         return vectors_to_upsert
     
     def save_vectors(self, vectors, output_path):
         """Save vectors to file"""
-        print(f"Saving {len(vectors)} vectors to {output_path}")
+        logfire.info("Saving {len} vectors to {output_path}", len=len(vectors), output_path=output_path)
         with open(output_path, "w") as f:
             json.dump(vectors, f, indent=2)
-        print(f"Saved vectors to {output_path}")
+        logfire.info("Saved vectors to {output_path}", output_path=output_path)
     
     def create_and_manage_index(self, vectors, dimension):
         """Create Pinecone index if needed and return index object"""
-        print(f"Index {self.pinecone_index_name} creating one...")
+        logfire.info("Index {pinecone_index_name} creating one...", pinecone_index_name=self.pinecone_index_name)
         self.pc.create_index(
             name=self.pinecone_index_name,
             dimension=dimension,
@@ -82,18 +83,18 @@ class VectorGenerator:
     def upsert_vectors_to_pinecone(self, vectors, dimension):
         """Upsert vectors to Pinecone"""
         try:
-            print(f"Upserting {len(vectors)} vectors to Pinecone, dimension: {dimension}...")
+            logfire.info("Upserting {len} vectors to Pinecone, dimension: {dimension}...", len=len(vectors), dimension=dimension)
             
             index = self.create_and_manage_index(vectors, dimension)
             index.upsert(
                 namespace=PINECONE_NAMESPACE,
                 vectors=vectors
             )
-            print(f"Successfully upserted {len(vectors)} vectors to Pinecone")
+            logfire.info("Successfully upserted {len} vectors to Pinecone", len=len(vectors))
             return True
             
         except Exception as e:
-            print(f"Error upserting to Pinecone: {e}")
+            logfire.error("Error upserting to Pinecone: {e}", e=e)
             return False
     
     def process_chunks_to_vectors(self, chunks, vectors_output_path):
@@ -108,10 +109,10 @@ class VectorGenerator:
             if not success:
                 return False
         else:
-            print("No vectors generated")
+            logfire.error("No vectors generated")
             return False
         
-        print(f"All {len(chunks)} chunks processed successfully!")
+        logfire.info("All {len} chunks processed successfully!", len=len(chunks))
         
         return True
     
@@ -135,6 +136,6 @@ class VectorGenerator:
             return similar_chunks
             
         except Exception as e:
-            print(f"Error finding similar chunks: {e}")
+            logfire.error("Error finding similar chunks: {e}", e=e)
             return []
     

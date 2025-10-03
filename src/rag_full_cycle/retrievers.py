@@ -1,29 +1,28 @@
 import json
 import random
 import os
+import logfire
 from .config import *
-from .embedding_generator import EmbeddingGenerator
-from .vector_generator import VectorGenerator
+from .embeddings import Embeddings
+from .vectors import Vectors
 
 
-class RandomQuestionTester:
+class Retrievers:
     """Handles random question selection and testing for RAG pipeline"""
     
     def __init__(self, size, overlap, embedding_model=EMBEDDING_MODEL_3_SMALL):
         self.size = size
         self.overlap = overlap
         self.embedding_model = embedding_model
-        self.embedding_generator = EmbeddingGenerator(size, overlap, embedding_model)
-        self.vector_generator = VectorGenerator(size, overlap, embedding_model)
+        self.embedding_generator = Embeddings(size, overlap, embedding_model)
+        self.vector_generator = Vectors(size, overlap, embedding_model)
     
-    def load_questions_from_file(self, question_file):
-        """Load questions from a JSON file"""
-        with open(question_file, 'r') as f:
+    def load_questions_from_file(self, questions_file):
+        with open(questions_file, 'r') as f:
             questions = json.load(f)
         return questions
     
     def extract_all_questions(self, questions_data):
-        """Extract all questions from the questions data structure"""
         all_questions = []
         for question_data in questions_data:
             chunk_id = question_data['chunk_id']
@@ -41,18 +40,16 @@ class RandomQuestionTester:
         return all_questions
     
     def select_random_questions(self, all_questions, num_questions=10):
-        """Select a random sample of questions for testing"""
         if len(all_questions) >= num_questions:
             selected_questions = random.sample(all_questions, num_questions)
         else:
             selected_questions = all_questions
         
-        print(f"Selected {len(selected_questions)} questions for testing")
+        logfire.info("Selected {len} questions for testing", len=len(selected_questions))
         return selected_questions
     
     def test_question_retrieval(self, question_data):
-        """Test question retrieval by finding similar chunks"""
-        print(f"Test question: {question_data['question']}")
+        logfire.info("Test question: {question_data}", question_data=question_data)
         
         try:
             embedding_response = self.embedding_generator.create_embedding_with_retry(question_data['question'])
@@ -62,15 +59,13 @@ class RandomQuestionTester:
             return similar_chunks
             
         except Exception as e:
-            print(f"Error testing question retrieval: {e}")
+            logfire.error("Error testing question retrieval: {e}", e=e)
             return []
     
-    def run_question_tests(self, question_file, num_questions=10):
-        """Run random question tests for a given question file"""
-        print(f"\nRunning question tests for {question_file}")
-        print("=" * 50)
-        
-        questions_data = self.load_questions_from_file(question_file)
+    def run_question_tests(self, questions_file, num_questions=10):
+        logfire.info("Running question tests for {questions_file}", questions_file=questions_file)
+
+        questions_data = self.load_questions_from_file(questions_file)
         all_questions = self.extract_all_questions(questions_data)
         selected_questions = self.select_random_questions(all_questions, num_questions)
         
@@ -84,21 +79,13 @@ class RandomQuestionTester:
         
         return results
     
-    def run_tests_for_chunk_size(self, chunk_key, output_path, num_questions=10):
-        """Run tests for a specific chunk size"""
-        question_file = f"{OUTPUT_DIR}/questions-{chunk_key}.json"
-        
-        if not os.path.exists(question_file):
-            print(f"Question file not found: {question_file}")
-            return []
-        
-        results = self.run_question_tests(question_file, num_questions)
+    def run_tests_for_chunk_size(self, questions_file, output_path, num_questions=10):
+        results = self.run_question_tests(questions_file, num_questions)
         self.save_questions(results, output_path)
         return results
     
     def save_questions(self, questions_data, output_path):
-        """Save questions to file"""
-        print(f"Saving questions to {output_path}")
+        logfire.info("Saving questions to {output_path}", output_path=output_path)
         with open(output_path, "w") as f:
             json.dump(questions_data, f, indent=2)
-        print(f"Saved {len(questions_data)} questions to {output_path}")
+        logfire.info("Saved {len} questions to {output_path}", len=len(questions_data), output_path=output_path)

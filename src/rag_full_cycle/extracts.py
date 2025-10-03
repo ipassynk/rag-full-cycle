@@ -1,10 +1,9 @@
 import json
 import re
 import pdfplumber
-from .config import *
+import logfire
 
-
-class ExtractGenerator:
+class Extracts:
     def __init__(self):
         pass
     
@@ -29,7 +28,7 @@ class ExtractGenerator:
     
     def extract_text_from_pdf(self, pdf_path, max_pages=None):
         """Extract text from PDF file using pdfplumber"""
-        print("Extracting text from PDF with pdfplumber...")
+        logfire.info("Extracting text from PDF with pdfplumber...")
         
         extract = []
         with pdfplumber.open(pdf_path) as pdf:
@@ -42,17 +41,17 @@ class ExtractGenerator:
                 
                 if cleaned_text:
                     extract.append({"page": num, "text": cleaned_text})
-                    print(f"Page {num}: {len(cleaned_text)} characters")
+                    logfire.info("Page {num}: {len} characters", num=num, len=len(cleaned_text))
         
-        print(f"Extracted text from {len(extract)} pages")
+        logfire.info("Extracted text from {len} pages", len=len(extract))
         return extract
     
     def save_extract(self, extract_data, output_path):
         """Save extracted text to file"""
-        print("Saving extracted text...")
+        logfire.info("Saving extracted text...")
         with open(output_path, "w") as f:
             json.dump(extract_data, f, indent=2)
-        print(f"Saved extracted text to {output_path}")
+        logfire.info("Saved extracted text to {output_path}", output_path=output_path)
     
     def extract_and_save(self, pdf_path, output_path, max_pages=None):
         """Extract text from PDF and save to file"""

@@ -2,6 +2,8 @@
 
 A production-ready Retrieval-Augmented Generation (RAG) system built with modern AI technologies.
 
+![img.png](img.png)
+
 ## Technologies & Stack
 
 - **Vector Database**: Pinecone for scalable similarity search

@@ -1,88 +1,95 @@
 import json
 import os
-import glob
-import random
 
 from .config import *
-from .extract_generator import ExtractGenerator
-from .chunk_generator import ChunkGenerator
-from .vector_generator import VectorGenerator
-from .question_generator import QuestionGenerator
-from .embedding_generator import EmbeddingGenerator
-from .question_tester import RandomQuestionTester
+from .extracts import Extracts
+from .chunks import Chunks
+from .vectors import Vectors
+from .questions import Questions
+from .retrievers import Retrievers
+from .evals import Evals
+import logfire
+
+
+def runPipelineForConfig(extract, size, overlap, embedding_model):
+    chunk_key = f"{size}-{overlap}"
+
+    with logfire.span('processing {chunk_key} {embedding_model}', chunk_key=chunk_key, embedding_model=embedding_model):
+        # Output files for this configuration
+        chunks_file = f"{OUTPUT_DIR}/chunks-{chunk_key}.json"
+        vectors_file = f"{OUTPUT_DIR}/vectors-{chunk_key}.json"
+        questions_file = f"{OUTPUT_DIR}/questions-{chunk_key}.json"
+        retrievers_file = f"{OUTPUT_DIR}/retrievers-{chunk_key}.json"
+
+        # Chunking
+        with logfire.span('Chinking'):
+            if not os.path.exists(chunks_file):
+                chunk_generator = Chunks(size, overlap)
+                chunks = chunk_generator.create_and_save_chunks(extract, chunks_file)
+            else:
+                with open(chunks_file, 'r') as f:
+                    chunks = json.load(f)
+                logfire.info('Found {chunks_file} chunk file', chunks_file=chunks_file)
+
+        # vectors
+        with logfire.span('Vector creation'):
+            if not os.path.exists(vectors_file):
+                vector_generator = Vectors(size, overlap, embedding_model)
+                success = vector_generator.process_chunks_to_vectors(chunks, vectors_file)
+                if not success:
+                    logfire.info("Vector generation failed for")
+                    return
+            else:
+                logfire.info("Found {vectors_file} vector file", vectors_file=vectors_file)
+
+        # questions
+        with logfire.span('Questions generation'):
+            if not os.path.exists(questions_file):
+                question_generator = Questions(size, overlap, embedding_model)
+                question_generator.generate_questions_from_chunks(chunks, questions_file)
+            else:
+                logfire.info("Found {questions_file} questions file", questions_file=questions_file)
+
+        # retrievers
+        with logfire.span('Retrievers'):
+            if not os.path.exists(retrievers_file):
+                retriever = Retrievers(size, overlap, embedding_model)
+                retrievers = retriever.run_tests_for_chunk_size(questions_file, retrievers_file, num_questions=10)
+            else:
+                with open(retrievers_file, 'r') as f:
+                    retrievers = json.load(f)
+                logfire.info("Found {retrievers_file} retriever file", retrievers_file=retrievers_file)
+
+        # eval (WIP) 
+        with logfire.span('Evals'):
+            evaluator = Evals(questions_results=retrievers)
+            evaluator.evaluate_and_print_results(k=2)
 
 def main():
     print("Starting RAG Pipeline...")
     print("=" * 50)
-    
-    extract = []
+
+    logfire.configure(token=LOGFIRE_API_KEY)
+    logfire.info('Hello, {place}!', place='rag-full-cycle')
+
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    
-    # Extract text 
-    if not os.path.exists(EXTRACT_OUTPUT):
-        extract_generator = ExtractGenerator()
-        extract = extract_generator.extract_and_save(
-            PDF_FILE_PATH, 
-            EXTRACT_OUTPUT, 
-            #max_pages=3
-        )
-    else:
-        with open(EXTRACT_OUTPUT, 'r') as f:
-            extract = json.load(f)
-        print(f"Loaded {len(extract)} pages from existing extract file")
 
-    # Generate chunks
-    existing_chunk_files = glob.glob(f"{OUTPUT_DIR}/chunks-*.json")    
-    if not existing_chunk_files:
-        chunk_generator = ChunkGenerator()
-        all_chunks = chunk_generator.process_all_chunk_sizes(extract)
-    else:
-        all_chunks = {}
-        for chunk_file in existing_chunk_files:
-            # Extract chunk key from filename (e.g., "chunks-100-10.json" -> "100-10")
-            chunk_key = os.path.basename(chunk_file).replace("chunks-", "").replace(".json", "")
-            with open(chunk_file, 'r') as f:
-                all_chunks[chunk_key] = json.load(f)
-        print(f"Loaded {len(all_chunks)} chunk files")
+    with logfire.span('extract PDF file'):
+        if not os.path.exists(EXTRACT_OUTPUT):
+            extract_generator = Extracts()
+            extract = extract_generator.extract_and_save(
+                PDF_FILE_PATH,
+                EXTRACT_OUTPUT,
+                # max_pages=3
+            )
+        else:
+            with open(EXTRACT_OUTPUT, 'r') as f:
+                extract = json.load(f)
+            print(f"Loaded {len(extract)} pages from existing extract file")
 
-    # Generate vectors
-    existing_vector_files = glob.glob(f"{OUTPUT_DIR}/vectors-*.json")
-    if not existing_vector_files:
-        for chunk_key, chunks in all_chunks.items():
-            print(f"\nProcessing chunk size: {chunk_key}")
-            size, overlap = chunk_key.split("-")
-            vector_generator = VectorGenerator(size, overlap, embedding_model=EMBEDDING_MODEL_3_SMALL)
-            vectors_output = f"{OUTPUT_DIR}/vectors-{chunk_key}.json"
-            success = vector_generator.process_chunks_to_vectors(chunks, vectors_output)
-            
-            if not success:
-                print(f"Vector generation failed for {chunk_key}, continuing with next chunk size")
-                continue
-    else:
-        print(f"Found {len(existing_vector_files)} vector files")
-
-    # Generate questions
-    existing_questions_files = glob.glob(f"{OUTPUT_DIR}/questions-*.json")
-    if not existing_questions_files:
-        print("Question files not found, generating questions...")
-        for chunk_key, chunks in all_chunks.items():
-            size, overlap = chunk_key.split("-")
-            question_generator = QuestionGenerator(size, overlap, embedding_model=EMBEDDING_MODEL_3_SMALL)
-            questions_output = f"{OUTPUT_DIR}/questions-{chunk_key}.json"
-            question_generator.generate_questions_from_chunks(chunks, questions_output)
-    else:
-        print(f"Found {len(existing_questions_files)} question files")
-
-    # Test random questions for all chunk sizes
-    all_results = {}
-    for chunk_key, chunks in all_chunks.items():
-        print(f"\nTesting chunk size: {chunk_key}")
-        size, overlap = chunk_key.split("-")
-        
-        tester = RandomQuestionTester(size, overlap, embedding_model=EMBEDDING_MODEL_3_SMALL)
-        output_path = f"{OUTPUT_DIR}/tester-{chunk_key}.json"
-        results = tester.run_tests_for_chunk_size(chunk_key, output_path, num_questions=10)
-        all_results[chunk_key] = results
+    for size in CHUNK_SIZES:
+        for overlap in CHUNK_OVERLAPS:
+            runPipelineForConfig(extract, size, overlap, EMBEDDING_MODEL_3_SMALL)
 
     print("\nRAG Pipeline completed successfully!")
     print("=" * 50)
