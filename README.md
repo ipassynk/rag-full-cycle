@@ -2,7 +2,7 @@
 
 A production-ready Retrieval-Augmented Generation (RAG) system built with modern AI technologies.
 
-![img.png](img.png)
+![logfire.jpg](logfire.jpg)
 
 ## Evaluation loop
 
