@@ -47,6 +47,9 @@ A production-ready Retrieval-Augmented Generation (RAG) system built with modern
 4. poetry install && poetry run pipeline
 
 You can run with baby book or by10syb report. You can speciy step or not steps ru all all. Here are examples:
-
+```
 poetry run pipeline baby --steps questions
 poetry run pipeline baby
+poetry run pipeline fy10 --steps retrievers evaluate
+```
+
