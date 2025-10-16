@@ -58,7 +58,6 @@ FILE_NAME = pdf_file.split('/')[-1].replace('.pdf', '').replace('_', '-').lower(
 OUTPUT_DIR = f"{config['output_dir']}/{FILE_NAME}"
 OPENAI_API_KEY = config['api_keys']['openai']
 PINECONE_API_KEY = config['api_keys']['pinecone']
-OPENROUTER_API_KEY = config['api_keys']['openrouter']
 LOGFIRE_API_KEY = config['api_keys']['logfire']
 TOP_K_RESULTS = config['vector_search']['top_k_results']
 PINECONE_NAMESPACE = config['vector_search']['pinecone_namespace']

@@ -2,7 +2,6 @@
   "api_keys": {
     "openai": "$OPENAI_API_KEY",
     "pinecone": "$PINECONE_API_KEY",
-    "openrouter": "$OPENROUTER_API_KEY",
     "logfire": "$LOGFIRE_API_KEY"
   },
   "output_dir": "output",
