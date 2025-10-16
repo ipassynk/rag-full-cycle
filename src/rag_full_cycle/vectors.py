@@ -7,20 +7,18 @@ from .config import *
 from .embeddings import Embeddings
 
 class Vectors:
-    def __init__(self, size, overlap, embedding_model):
-        self.client = OpenAI(api_key=OPENAI_API_KEY)
+    def __init__(self, size, overlap):
         self.pc = Pinecone(api_key=PINECONE_API_KEY)
-        self.embedding_model = embedding_model
         self.size = size
         self.overlap = overlap
-        self.pinecone_index_name = f"{size}-{overlap}-{embedding_model}"
+        self.pinecone_index_name = f"{size}-{overlap}-{FILE_NAME}"
     
     def generate_embeddings_for_chunks(self, chunks):
         """Generate embeddings for a list of chunks"""
         logfire.info("Generating embeddings for {len} chunks...", len=len(chunks))
         logfire.info("Using batch size: {BATCH_SIZE}, delay: {DELAY_BETWEEN_REQUESTS}s", BATCH_SIZE=BATCH_SIZE, DELAY_BETWEEN_REQUESTS=DELAY_BETWEEN_REQUESTS)
         
-        embedding_generator = Embeddings(self.embedding_model)
+        embedding_generator = Embeddings()
         vectors_to_upsert = []
         
         # Process chunks in batches to improve performance

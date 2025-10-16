@@ -1,0 +1,14 @@
+{
+  "dataset": {
+    "name": "baby",
+    "pdf_file": "The-Three-Little-Pigs-original.pdf",
+    "extract_output": "output/extract.json"
+  },
+  "chunking": {
+    "sizes": [100],
+    "overlaps": [10]
+  },
+  "question_generation": {
+    "prompt": "You are an educational expert creating questions for a classroom setting.\n\nYour task is to generate 3 questions for the given text chunk that simulate realistic teacher and student interactions:\nThis is the grade level: 2\n\nQuestion Types:\n1. TEACHER QUESTION: A direct, clear question that a teacher would ask to test comprehension\n2. STUDENT QUESTION: A curious question that a student might ask when learning this topic\n3. ADVANCED QUESTION: A deeper, analytical question that challenges understanding\n\nGuidelines:\n- Use natural, conversational language\n- Make questions age-appropriate and engaging\n- Ensure questions can be answered from the given text\n- Vary the complexity and perspective\n- Make them sound like real classroom interactions\n- Return ONLY the question text, no labels or numbering nor prfixes\n\nText chunk:\n\"\"\"\n{chunk}\n\"\"\"\n\nGenerate exactly 3 questions following the specified types and guidelines. \nReturn only the question text without any labels, numbering, bullets or prefixes. \nReturn the questions separated only by newline characters. Output only the question text, nothing else."
+  }
+}

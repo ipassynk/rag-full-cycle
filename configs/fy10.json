@@ -1,0 +1,14 @@
+{
+  "dataset": {
+    "name": "fy10",
+    "pdf_file": "fy10syb.pdf",
+    "extract_output": "output/extract.json"
+  },
+  "chunking": {
+    "sizes": [512],
+    "overlaps": [64]
+  },
+  "question_generation": {
+    "prompt": "You are a data comprehension assistant. I will provide you with a chunk of text from the U.S. Department of Justice, Executive Office for Immigration Review (EOIR) FY 2010 Statistical Year Book.\n\nYour task is to generate 3 diverse and meaningful questions that could be answered from the information in this chunk.\n\nGuidelines:\n- Each question should focus on key facts, insights, or statistics present in the chunk.\n- Questions should vary in type — for example, one factual, one analytical, and one interpretive.\n- Avoid yes/no questions.\n- Keep each question concise and clear.\n- Do not include answers.\n- **Do not use numbers, letters, bullets, or any prefixes.**\n- **Do not format as a list.**\n- **Return exactly 3 questions separated only by newline characters.**\n- **Output only the question text, nothing else.**\n\nText chunk:\n\"\"\"\n{chunk}\n\"\"\"\n\nGenerate the questions now."
+  }
+}

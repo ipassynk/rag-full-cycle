@@ -1,11 +1,14 @@
 import json
 import logfire
+import nltk
+from nltk.tokenize import word_tokenize
 
 
 class Chunks:
     def __init__(self, size, overlap):
         self.size = size
         self.overlap = overlap
+        nltk.download('punkt_tab')
 
     def create_chunks(self, extract_data):
         """Create chunks from extracted text data, respecting word boundaries"""
@@ -13,7 +16,7 @@ class Chunks:
 
         for data in extract_data:
             text = data["text"]
-            words = text.split()
+            words = word_tokenize(text)
             step_size = self.size - self.overlap
             for i in range(0, len(words), step_size):
                 chunk_words = words[i:i + self.size]

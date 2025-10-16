@@ -1,8 +1,6 @@
 import json
 import random
-import os
 import logfire
-from .config import *
 from .embeddings import Embeddings
 from .vectors import Vectors
 
@@ -10,18 +8,12 @@ from .vectors import Vectors
 class Retrievers:
     """Handles random question selection and testing for RAG pipeline"""
     
-    def __init__(self, size, overlap, embedding_model):
+    def __init__(self, size, overlap):
         self.size = size
         self.overlap = overlap
-        self.embedding_model = embedding_model
-        self.embedding_generator = Embeddings(self.embedding_model)
-        self.vector_generator = Vectors(size, overlap, embedding_model)
-    
-    def load_questions_from_file(self, questions_file):
-        with open(questions_file, 'r') as f:
-            questions = json.load(f)
-        return questions
-    
+        self.embedding_generator = Embeddings()
+        self.vector_generator = Vectors(size, overlap)
+
     def extract_all_questions(self, questions_data):
         all_questions = []
         for question_data in questions_data:
@@ -60,10 +52,9 @@ class Retrievers:
             logfire.error("Error testing question retrieval: {e}", e=e)
             return []
     
-    def run_question_tests(self, questions_file, num_questions=10):
-        logfire.info("Running question tests for {questions_file}", questions_file=questions_file)
+    def run_question_tests(self, questions_data, num_questions=10):
+        logfire.info("Running question tests")
 
-        questions_data = self.load_questions_from_file(questions_file)
         all_questions = self.extract_all_questions(questions_data)
         selected_questions = self.select_random_questions(all_questions, num_questions)
         

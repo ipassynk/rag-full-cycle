@@ -1,0 +1,23 @@
+{
+  "api_keys": {
+    "openai": "$OPENAI_API_KEY",
+    "pinecone": "$PINECONE_API_KEY",
+    "openrouter": "$OPENROUTER_API_KEY",
+    "logfire": "$LOGFIRE_API_KEY"
+  },
+  "output_dir": "output",
+  "vector_search": {
+    "top_k_results": 10,
+    "pinecone_namespace": "default"
+  },
+  "rate_limiting": {
+    "batch_size": 10,
+    "delay_between_requests": 0.1,
+    "delay_between_batches": 1.0,
+    "max_retries": 3
+  },
+  "models": {
+    "question_model": "mistral:latest",
+    "embedding_model": "all-minilm"
+  }
+}

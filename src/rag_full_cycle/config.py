@@ -1,69 +1,70 @@
 import os
-from typing import List
+import sys
+import json
+from pathlib import Path
 
-# API Keys
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
-OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
-PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
-LOGFIRE_API_KEY = os.environ.get("LOGFIRE_API_KEY")
+def load_json_config(dataset="fy10"):
+    """Load configuration from JSON files"""
+    config_dir = Path(__file__).parent.parent.parent / "configs"
+    
+    base_config_path = config_dir / "base.json"
+    with open(base_config_path, 'r') as f:
+        base_config = json.load(f)
+    
+    dataset_config_path = config_dir / f"{dataset}.json"
+    with open(dataset_config_path, 'r') as f:
+        dataset_config = json.load(f)
+    
+    config = {**base_config, **dataset_config}
+    
+    def expand_env_vars(obj):
+        if isinstance(obj, dict):
+            return {k: expand_env_vars(v) for k, v in obj.items()}
+        elif isinstance(obj, str):
+            return os.path.expandvars(obj)
+        else:
+            return obj
+    
+    config = expand_env_vars(config)
+    
+    return config
 
-# File 
-#PDF_FILE_PATH = "fy10syb.pdf"
-PDF_FILE_PATH = "The-Three-Little-Pigs-original.pdf"
+def get_dataset_from_args():
+    """Extract dataset from command line arguments"""
+    if len(sys.argv) > 1:
+        dataset = sys.argv[1].lower()
+        if dataset in ["fy10", "baby"]:
+            return dataset
+    return "fy10"  # default
 
-OUTPUT_DIR = "output"
-EXTRACT_OUTPUT = f"{OUTPUT_DIR}/extract.json"
-CHUNKS_OUTPUT = f"{OUTPUT_DIR}/chunks.json"
+# Load the appropriate configuration and export variables
+DATASET = get_dataset_from_args()
+config = load_json_config(DATASET)
 
-# Chunking Configuration
-#CHUNK_SIZES: List[int] = [100, 256, 512]
-#CHUNK_OVERLAPS: List[int] = [10, 64, 64]
-
-### This is in words
-CHUNK_SIZES: List[int] = [100]
-CHUNK_OVERLAPS: List[int] = [10]
-
-# OpenAI Configuration
-OPEN_ROUTER_MODEL = "deepseek/deepseek-chat-v3.1:free"
-EMBEDDING_MODEL_3_SMALL = "text-embedding-3-small"
-
-# Vector Search Configuration
-TOP_K_RESULTS = 10
-PINECONE_NAMESPACE = "default"
-
-# Rate Limiting Configuration
-BATCH_SIZE = 10  # Process chunks in batches
-DELAY_BETWEEN_REQUESTS = 0.1  # 100ms delay between requests
-DELAY_BETWEEN_BATCHES = 1.0  # 1 second delay between batches
-MAX_RETRIES = 3  # Maximum retry attempts for rate limits
-
-# Prompt Configuration
-GRADE_LEVEL = 2
-QUESTION_GENERATION_PROMPT = """
-You are an educational expert creating questions for a classroom setting.
-
-Your task is to generate 3 questions for the given text chunk that simulate realistic teacher and student interactions:
-This is the grade level: {grade_level}
-
-Question Types:
-1. TEACHER QUESTION: A direct, clear question that a teacher would ask to test comprehension
-2. STUDENT QUESTION: A curious question that a student might ask when learning this topic
-3. ADVANCED QUESTION: A deeper, analytical question that challenges understanding
-
-Guidelines:
-- Use natural, conversational language
-- Make questions age-appropriate and engaging
-- Ensure questions can be answered from the given text
-- Vary the complexity and perspective
-- Make them sound like real classroom interactions
-- Return ONLY the question text, no labels or numbering
-
-Text chunk:
-\"\"\"
-{chunk}
-\"\"\"
-
-Generate exactly 3 questions following the specified types and guidelines. 
-Return only the question text without any labels, numbering, or prefixes.
-"""
+# Extract specific config values for backward compatibility
+# Resolve PDF path relative to project root
+pdf_file = config['dataset']['pdf_file']
+if not os.path.isabs(pdf_file):
+    # Get project root directory (parent of src directory)
+    project_root = Path(__file__).parent.parent.parent
+    PDF_FILE_PATH = str(project_root / pdf_file)
+else:
+    PDF_FILE_PATH = pdf_file
+EXTRACT_OUTPUT = config['dataset']['extract_output']
+CHUNK_SIZES = config['chunking']['sizes']
+CHUNK_OVERLAPS = config['chunking']['overlaps']
+QUESTION_GENERATION_PROMPT = config['question_generation']['prompt']
+FILE_NAME = pdf_file.split('/')[-1].replace('.pdf', '').replace('_', '-').lower()
+OUTPUT_DIR = f"{config['output_dir']}/{FILE_NAME}"
+OPENAI_API_KEY = config['api_keys']['openai']
+PINECONE_API_KEY = config['api_keys']['pinecone']
+OPENROUTER_API_KEY = config['api_keys']['openrouter']
+LOGFIRE_API_KEY = config['api_keys']['logfire']
+TOP_K_RESULTS = config['vector_search']['top_k_results']
+PINECONE_NAMESPACE = config['vector_search']['pinecone_namespace']
+BATCH_SIZE = config['rate_limiting']['batch_size']
+DELAY_BETWEEN_REQUESTS = config['rate_limiting']['delay_between_requests']
+DELAY_BETWEEN_BATCHES = config['rate_limiting']['delay_between_batches']
+MAX_RETRIES = config['rate_limiting']['max_retries']
+QUESTION_MODEL = config['models']['question_model']
+EMBEDDING_MODEL = config['models']['embedding_model']
